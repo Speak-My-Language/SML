@@ -17,20 +17,19 @@ function LandingContainer() {
   //   document.body.style.backgroundimage
   // })
   return (
-    <div className="backgroundImageContainer"style={{ background: `url(${background})` }}>
-
+    <div className="mainContainer">
+    {/* style={{ background: `url(${})` }} */}
+      <div id="toptext"> 
+        <i class="fa-solid fa-terminal"></i>          
+        Speaking My Language 
+      </div>
+      <div id="bottomtext"> 
+      Find your next pair partner
+      </div>
       <Card id="sml" sx={{ minWidth: 275 }}>
         <CardContent>
-          {/* <Typography>  */}
-            <div id="toptext"> 
-            Speaking My Language
-            </div>
-            <div id="bottomtext"> 
-            Find your next pair partner
-            </div>
           <SignupContainer />
         </CardContent>
-
       </Card>
     </div>
   )
