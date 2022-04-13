@@ -2,8 +2,6 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import GitHubIcon from '@mui/icons-material/GitHub';
 
-// const fetch = require('node-fetch');
-
 function SignupContainer() {
   const oAuthGo = () => {
     window.location = 'http://localhost:3000/signup/github/auth';
@@ -11,8 +9,6 @@ function SignupContainer() {
 
   return (
     <div id="signupContainer">
-      {/* <p>signupContainer</p> */}
-      {/* <Button onClick={oAuthGo} variant="contained">Sign Up</Button> */}
       <Button className='githubButton'
         data-testid='OAuth-2'
         variant='contained'
