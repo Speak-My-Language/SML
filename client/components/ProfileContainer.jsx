@@ -33,33 +33,37 @@ function ProfileContainer() {
 
   }
 
+  
+
   return (
-    <Card id="sml" sx={{ minWidth: 275 }}>
-        <CardContent>
-        <form action="/user" method="PUT">
-          {Object.keys(profile).map((el) => (
-            <>
-              <label>{el}</label>
-              <br />
-              <Input className='updateProfileInput' type="text" value={profile[el]} />
-              <br />
-            </>
-          ))}
-            <Button
-              className='updateProfileBtn'
-              data-testid='OAuth-2'
-              variant='contained'
-              color='secondary'
-              size='large'        
-              sx={{ borderRadius: 1, fontWeight: 'bold', margin: 5, padding: 1 }}
-              onClick={() => setChoice({ name: currentUser.name, choice: 0 })}
-            >
-              Update
-          </Button>
-          {/* <Button type="submit" onClick={() => setCounter()}>Update</Button> */}
-        </form>
-        </CardContent>
-    </Card>
+    <div id="profile-container">
+      <Card id="sml" sx={{ minWidth: 550, borderRadius: 2 }}>
+          <CardContent>
+          <form action="/user" method="PUT">
+            {Object.keys(profile).map((el) => (
+              <>
+                <label>{el}</label>
+                <br />
+                <Input className='updateProfileInput' type="text" value={profile[el]} />
+                <br />
+              </>
+            ))}
+              <Button
+                className='updateProfileBtn'
+                data-testid='OAuth-2'
+                variant='contained'
+                color='secondary'
+                size='large'        
+                sx={{ borderRadius: 1, fontWeight: 'bold', margin: 5, padding: 1 }}
+                onClick={() => setChoice({ name: currentUser.name, choice: 0 })}
+              >
+                Update
+            </Button>
+            {/* <Button type="submit" onClick={() => setCounter()}>Update</Button> */}
+          </form>
+          </CardContent>
+      </Card>
+    </div>
   );
 }
 

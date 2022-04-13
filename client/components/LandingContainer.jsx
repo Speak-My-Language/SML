@@ -17,8 +17,7 @@ function LandingContainer() {
   //   document.body.style.backgroundimage
   // })
   return (
-    <div className="mainContainer">
-    {/* style={{ background: `url(${})` }} */}
+    <div className="main-login-container">
       <div id="toptext"> 
         <i class="fa-solid fa-terminal"></i>          
         Speaking My Language 
