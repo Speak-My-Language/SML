@@ -20,7 +20,7 @@ signupController.storeUserInDb = async (req, res, next) => {
 
   try {
     // error to meet database constraint, name set NOT NULL
-    if (name == undefined) throw new Error('User input(s) invalid.');
+    if (name == undefined || node_id == undefined) throw new Error('User input(s) invalid.');
 
     // Check if node_id is in db,
     // if so, skip the insert and login

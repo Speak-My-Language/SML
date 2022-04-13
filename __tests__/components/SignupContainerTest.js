@@ -13,7 +13,7 @@ describe('Unit testing SignupContainer component', () => {
   let component;
   beforeAll(() => component = render(<SignupContainer />));
 
-  xtest('Button renders with text "sign in with github"', () => {
+  test('Button renders with text "sign in with github"', () => {
     expect(component.getAllByText('sign in with github').length).toEqual(1);
   });
 
