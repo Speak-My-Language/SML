@@ -1,21 +1,15 @@
 import React from 'react';
+import { useState } from 'react';
 import SignupContainer from './SignupContainer';
 
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 
+const LandingContainer = () => {
+  const backgroundImage =
+    'https://eyeondesign.aiga.org/wp-content/uploads/2020/09/2.jpg';
+  const [background, setBackground] = useState(backgroundImage);
 
-
-function LandingContainer() {
-  const [ background, setBackground ] = React.useState('https://eyeondesign.aiga.org/wp-content/uploads/2020/09/2.jpg')
-
-  // React.useEffect(() => {
-  //   document.body.style.backgroundimage
-  // })
   return (
     <div className="main-login-container">
       <div id="toptext"> 
@@ -32,7 +26,7 @@ function LandingContainer() {
         </CardContent>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default LandingContainer;
