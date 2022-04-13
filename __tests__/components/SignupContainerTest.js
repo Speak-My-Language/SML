@@ -9,7 +9,7 @@ import React from "react";
 import SignupContainer from "../../client/components/SignupContainer";
 
 
-describe('Unit testing signupContainer component', () => {
+describe('Unit testing SignupContainer component', () => {
   let component;
   beforeAll(() => component = render(<SignupContainer />));
 
