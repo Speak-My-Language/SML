@@ -26,11 +26,12 @@ function LandingContainer() {
       <div id="bottomtext"> 
       Find your next pair partner
       </div>
-      <Card id="sml" sx={{ minWidth: 275 }}>
+      <div id="signupContainer" sx={{ minWidth: 275 }}>
         <CardContent>
+          
           <SignupContainer />
         </CardContent>
-      </Card>
+      </div>
     </div>
   )
 }
