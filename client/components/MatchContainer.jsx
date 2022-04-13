@@ -10,7 +10,6 @@ import Typography from '@mui/material/Typography';
 
 // const fetch = require('node-fetch');
 
-
 const matches = [
   {
     name: 'Yale',
@@ -20,12 +19,12 @@ const matches = [
     company: 'Yale inc',
     website: 'www.yale.com',
     email: 'yale@email.com',
-    bio: "I am Yale.",
+    bio: 'I am Yale.',
     languages: {
-      'Javascript': 49040,
-      'Python': 34800,
-      'C': 9000,
-    }
+      Javascript: 49040,
+      Python: 34800,
+      C: 9000,
+    },
   },
   {
     name: 'Eric',
@@ -35,12 +34,12 @@ const matches = [
     company: 'eric inc',
     website: 'www.eric.com',
     email: 'eric@email.com',
-    bio: "I am eric.",
+    bio: 'I am eric.',
     languages: {
-      'Javascript': 49040,
-      'Python': 34800,
-      'C': 9000,
-    }
+      Javascript: 49040,
+      Python: 34800,
+      C: 9000,
+    },
   },
   {
     name: 'Mireille',
@@ -50,19 +49,21 @@ const matches = [
     company: 'mireille inc',
     website: 'www.mireille.com',
     email: 'mireille@email.com',
-    bio: "I am mireille.",
+    bio: 'I am mireille.',
     languages: {
-      'Javascript': 49040,
-      'Python': 34800,
-      'C': 9000,
-    }
+      Javascript: 49040,
+      Python: 34800,
+      C: 9000,
+    },
   },
 ];
 
 function MatchContainer() {
   //const background = 'https://images.pexels.com/photos/531756/pexels-photo-531756.jpeg'
-  const [background, setBackground] = React.useState('https://images.pexels.com/photos/531756/pexels-photo-531756.jpeg');
-  const [matches, setMatches] = React.useState([]);
+  const [background, setBackground] = React.useState(
+    'https://images.pexels.com/photos/531756/pexels-photo-531756.jpeg'
+  );
+  // const [matches, setMatches] = React.useState([]);
   const [renderedMatches, setRenderedMatches] = React.useState();
 
   useEffect(() => {
@@ -71,24 +72,29 @@ function MatchContainer() {
       // response = await response.json();
       // console.log('matches list', response);
       let response = matches;
-      const rendered = response.map((el, ind) => <MatchesInfo key={ind} match={el} />);
+      console.log(response);
+      const rendered = [];
+      response.map((el, ind) =>
+        rendered.push(<MatchesInfo key={ind} match={el} />)
+      );
       setRenderedMatches(rendered);
-      setMatches(response);
+      console.log(renderedMatches);
+      // setMatches(response);
     }
     getMatches();
   }, []);
   return (
     <div style={{ minHeight: '1000px' }}>
-    <Card id="sml" sx={{ minWidth: 275 }}>
-      <CardContent>
-          {/* {renderedMatches} */}
-          <p>PAY NOW</p>
+      <Card id="sml" sx={{ minWidth: 275 }}>
+        <CardContent>
+          {renderedMatches}
+          {/* <p>PAY NOW</p>
           <p>YOU HAVE NOT PAID YET</p>
           <p>PLEASE PAY OR OR YOU WILL</p>
-          <h1>PAIR ALONE 4eva!!!!</h1>
-      </CardContent>
+          <h1>PAIR ALONE 4eva!!!!</h1> */}
+        </CardContent>
       </Card>
-  </div>
+    </div>
   );
 }
 
