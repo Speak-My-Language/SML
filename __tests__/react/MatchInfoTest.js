@@ -25,10 +25,10 @@ describe('Unit Testing MatchContainer Components', () => {
       text = render(<MatchesInfo {...props}/>)
     });
 
-    test('Should render each match', () => {
-      expect(text.getByText(`match1: {"name": "match1 name", "language": "Javascript"}`)).toBeTruthy();
-      expect(text.getByText(`match2: {"name": match2 name, language: "C++"}`)).toBeTruthy();
-      expect(text.getByText(`match2: {"name": match2 name, language: C++}`).nextSibling).toHaveTextContent(`match3: {name: 'match3 name', language: 'Python}`)
+    test('Should render each match, with props passed, in order', () => {
+      expect(text.getByText(`match1: {"name":"match1 name","language":"Javascript"}`)).toBeTruthy();
+      expect(text.getByText(`match2: {"name":"match2 name","language":"C++"}`)).toBeTruthy();
+      expect(text.getByText(`match2: {"name":"match2 name","language":"C++"}`).nextSibling).toHaveTextContent(`match3: {"name":"match3 name","language":"Python"}`)
     })
   })
 })
