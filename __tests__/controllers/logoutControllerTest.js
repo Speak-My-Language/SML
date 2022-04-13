@@ -5,7 +5,6 @@
 
 // Skipped for time being, logout functionality changes url to root endpoint
 xdescribe('Unit testing logoutController', () => {
-
   test('::PLACEHOLDER::', () => {
     return false;
   });
