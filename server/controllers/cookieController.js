@@ -19,8 +19,10 @@ cookieController.saveUserSession = (req, res, next) => {
 };
 
 cookieController.getUserSession = (req, res, next) => {
+  console.log('THIS IS REQ.COOKIES: ', req.cookies);
   const { user_session } = req.cookies; // -> { user_session: asdhfaskfh, auth_token: asdfdsaf }
   res.locals.userSession = user_session;
+  console.log('THIS IS THE USERSESSION', res.locals.userSession);
   return next();
 };
 
