@@ -46,6 +46,14 @@ matchesController.createMatch = async (req, res, next) => {
     let uuid = data.rows[0].id;
     let userName = data.rows[0].name;
 
+    //check to see if the user had alrady swiped on upcoming user
+    query = 'SELECT * FROM matches WHERE userid = $1 AND matched_user = $2;';
+    params = [uuid, match_uuid];
+    data = await db.query(query, params);
+    if(data.rows.length){
+      return next();
+    }
+
     // if choice is 0
     if (choice === 0) {
       console.log('YOU SWIPED 0');
