@@ -67,13 +67,11 @@ function MatchContainer() {
       // response = await response.json();
       // console.log('matches list', response);
       let response = matches;
-      console.log(response);
       const rendered = [];
-      response.map((el, ind) =>
-        rendered.push(<MatchesInfo key={ind} match={el} />)
-      );
+      response.map((el, ind) => {
+        rendered.push(<MatchesInfo key={el.name} matches={el} />);
+      });
       setRenderedMatches(rendered);
-      console.log(renderedMatches);
       // setMatches(response);
     }
     getMatches();

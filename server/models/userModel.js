@@ -1,6 +1,10 @@
 const { Pool } = require('pg');
 
-const PG_URL = 'postgres://zxazbbvi:vVuR6fP5wr-rLS67-ltqcRYleRnWUgTR@batyr.db.elephantsql.com/zxazbbvi';
+// old db
+// const PG_URL = 'postgres://zxazbbvi:vVuR6fP5wr-rLS67-ltqcRYleRnWUgTR@batyr.db.elephantsql.com/zxazbbvi';
+
+//new db
+const PG_URL = 'postgres://wmswsrjr:OByDmue3uJRVVPvWrcCHViAxRrz4Sm4w@rajje.db.elephantsql.com/wmswsrjr';
 
 const pool = new Pool({
   connectionString: PG_URL

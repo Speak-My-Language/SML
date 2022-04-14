@@ -13,9 +13,9 @@ body {
 }
 
 #program-container {
-  width:700px;
-  height: 1000px;
-  //background-color:#FCC;
+  width:650px;
+  height: 600px;
+  background-color: rgb(255, 255, 255);
   position: relative;
   display: block;
   margin-top: 30px;
@@ -38,10 +38,8 @@ body {
   white-space: normal;
 }
 
-.button {
-  margin: 20px;
-  padding: 10px;
-  background: gray;
+.Button {
+  width: 90px;
 }
 
 .main-login-container {
@@ -62,12 +60,16 @@ body {
   justify-content: center;
 }
 .main-feed-container {
+<<<<<<< HEAD
   // background-image: linear-gradient(to bottom right, white, rgb(208, 177, 228), rgb(190, 146, 212), rgb(212, 120, 215), rgb(222, 128, 189));
   background: linear-gradient(
     45deg,
     rgba(94, 193, 211, 0.904) 0%,
     rgb(228, 215, 248) 75%
   );
+=======
+  background-image: linear-gradient(to bottom right, white, rgb(208, 177, 228), rgb(190, 146, 212), rgb(212, 120, 215), rgb(204, 105, 169));
+>>>>>>> dev
 
   position: absolute;
     top: 0;
