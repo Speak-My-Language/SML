@@ -95,9 +95,8 @@ function ProgramContainer() {
   // const NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 100};
 
   return (
-    <div id="programContainer">
-
-      <Card id="sml" sx={{ minWidth: 275 }}>
+    <>
+      <div id="program-container" sx={{ minWidth: 275 }}>
         <CardContent>
           <div>{message}</div>
           <Button
@@ -125,8 +124,8 @@ function ProgramContainer() {
             
         </CardContent>
 
-      </Card>
-    </div>
+      </div>
+    </>
   );
 }
 
