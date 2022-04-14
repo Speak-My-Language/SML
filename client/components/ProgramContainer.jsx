@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Cookies from 'js-cookie';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -14,22 +15,27 @@ function ProgramContainer() {
   const [userList, setUserList] = React.useState();
   const [currentUser, setCurrentUser] = React.useState();
   const [message, setMessage] = React.useState('Loading');
-  const [userId, setUserId] = React.useState();
+  const [userId, setUserId] = React.useState(Cookies.get('user_session'));
+  const [loggedUser, setLoggedUser] = useState();
 
   // Create child component
   const userProfile = () => (
     <div>
-      <div className="languageChartDiv"><ChartContainer languages={currentUser.languages} /></div>
-      <div>{`${currentUser.name}`}</div>
-      <div style={{ fontSize: '1rem' }}>{`${currentUser.languages}`}</div>
+      <div className="languageChartDiv">
+        <ChartContainer user={loggedUser} match={currentUser} />
+      </div>
+      <br />
+      {/* <div style={{ fontSize: '1rem' }}>`${currentUser.languages}`</div> */}
     </div>
   );
 
   React.useEffect(() => {
     async function asyncSetUser() {
       let response = await fetch('http://localhost:3000/newProgrammer');
+      let myProfile = await fetch(`http://localhost:3000/user/${userId}`);
       response = await response.json();
-      console.log('cookies', document.cookie);
+      myProfile = await myProfile.json();
+      setLoggedUser(myProfile);
       setUserId(response[1]);
       const nextUser = response[0].pop();
       setUserList(response[0]);
@@ -56,12 +62,17 @@ function ProgramContainer() {
   // }
 
   React.useEffect(() => {
-    console.log('choice', choice)
     async function getNextUser() {
       if (userList) {
-        let response = await fetch(`http://localhost:3000/matches?node_id=${userId}&match_uuid=${currentUser.id}&is_matched=${choice.choice}`, {
+        let response = await fetch(`http://localhost:3000/matches`, {
           method: 'POST',
-          body: JSON.stringify({ hello: 'hello' }),
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            node_id: userId,
+            match_uuid: currentUser.id,
+            choice: choice.choice,
+            matchedName: currentUser.name,
+          }),
         });
         const nextUser = userList.pop();
         setUserList(userList);
@@ -95,38 +106,29 @@ function ProgramContainer() {
   // const NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 100};
 
   return (
-    <div id="programContainer">
-
-      <Card id="sml" sx={{ minWidth: 275 }}>
+    <>
+      <div id="program-container">
         <CardContent>
           <div>{message}</div>
-          <Button
-            variant='contained'
-            color='secondary'
-            size='large'
+          <button
+            
             sx={{ borderRadius: 2, fontWeight: 'bold', margin: 5, padding: 3 }}
-            className="matchButtons" 
+            className="matchButtons"
             onClick={() => setChoice({ name: currentUser.name, choice: 0 })}
           >
             0
-          </Button>
-          <Button
-            variant='contained'
-            color='secondary'
-            size='large'
+          </button>
+          <button
+          
             sx={{ borderRadius: 2, fontWeight: 'bold', margin: 5, padding: 3 }}
-            className="matchButtons" 
-            onClick={() => setChoice({ name: currentUser.name, choice: 0 })}
-            >
-              1
-          </Button>
-          {/* <Button type="button" className="matchButtons" onClick={() => setChoice({ name: currentUser.name, choice: 0 })}>0</Button>  */}
-          {/* <Button type="button" className="matchButtons" onClick={() => setChoice({ name: currentUser.name, choice: 1 })}>1</Button>  */}
-            
+            className="matchButtons"
+            onClick={() => setChoice({ name: currentUser.name, choice: 1 })}
+          >
+            1
+          </button>
         </CardContent>
-
-      </Card>
-    </div>
+      </div>
+    </>
   );
 }
 

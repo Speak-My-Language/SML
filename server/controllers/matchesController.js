@@ -8,48 +8,114 @@ const matchesController = {};
 // user id as first column
 matchesController.getMatches = async (req, res, next) => {
   try {
-    const getMatchesQ = 'SELECT * FROM matches m INNER JOIN users u ON m.id = u.id WHERE u.node_id = $1;';
-    const params = [res.locals.userSession];
-    // console.log(params) // -> node_id: 'MDQ6VXNlcjQ1NzAyNzE2'
+    const getMatchesQ = `SELECT name, location, handle, email, bio, languages FROM 
+      (SELECT matched_user 
+        FROM matches m 
+        WHERE m.userid::uuid = (SELECT id FROM users WHERE node_id= $1)::uuid
+        AND m.is_matched = 'true') AS newTable 
+      INNER JOIN users u ON newTable.matched_user::uuid = u.id::uuid;`
+
+    const params = [res.locals.userSession]
     const data = await db.query(getMatchesQ, params);
-    //console.log('data rows', data);
-    res.locals.userMatches = JSON.stringify(data.rows);
-    return next();
-  }
-  catch (err) {
-    return next({
-      log: `There was an error in getMatches middleware: ERROR ${err}`,
-      status: 400,
-      message: { err: 'No hablo your language' },
-    });
-  }
-};
-
-matchesController.createMatch = async (req, res, next) => {
-  console.log('where is body?', req.query);
-  const { node_id, match_uuid, is_matched } = req.query;
-  // user_id is in form node_id, is_matched is in form int of 0 or 1
-
-  // SELECT uuid using node_id from req.body
-  const query = 'SELECT id FROM users WHERE node_id=$1;';
-  let params = [node_id];
-  let data = await db.query(query, params);
-  console.log(data.rows); // [ { uuid } ]
-
-  // INSERT into matches
-  try {
-    // const getMatchesQ = 'INSERT INTO matches (id, matched_user, is_matched) VALUES()';
-    // const params = [res.locals.userSession]; // -> node_id: 'MDQ6VXNlcjQ1NzAyNzE2'
-    // const data = await db.query(getMatchesQ, params);
-    // console.log(data.rows);
-    // res.locals.userMatches = JSON.stringify(data.rows);
-
+    res.locals.userMatches = data.rows;
+    console.log('THIS IS PARAMS: ', params);
+    console.log('RES.LOCAL INFO USER MATCHES', res.locals.userMatches);
     return next();
   } catch (err) {
     return next({
       log: `There was an error in getMatches middleware: ERROR ${err}`,
       status: 400,
-      message: { err: 'No hablo your language' },
+      message: { err: 'ERROR IN GETTING MATCHES No hablo your language' },
+    });
+  }
+};
+
+matchesController.createMatch = async (req, res, next) => {
+  const { node_id, match_uuid, choice, matchedName } = req.body;
+  // user_id is in form node_id, is_matched is in form int of 0 or 1
+  console.log('----------------------------------------');
+  console.log('node_id', node_id);
+  console.log('match_uuid', match_uuid);
+  console.log('choice', choice);
+
+  try {
+    // SELECT uuid using node_id from req.body
+    let query = 'SELECT id, name FROM users WHERE node_id=$1;';
+    let params = [node_id];
+    let data = await db.query(query, params);
+    let uuid = data.rows[0].id;
+    let userName = data.rows[0].name;
+
+    //check to see if the user had alrady swiped on upcoming user
+    query = 'SELECT * FROM matches WHERE userid = $1 AND matched_user = $2;';
+    params = [uuid, match_uuid];
+    data = await db.query(query, params);
+    if(data.rows.length){
+      return next();
+    }
+
+    // if choice is 0
+    if (choice === 0) {
+      console.log('YOU SWIPED 0');
+      // insert query into db with like = false and is_match = false
+      query =
+        'INSERT INTO matches (userName, matchedName, userId, matched_user, liked, is_matched) VALUES ($1, $2, $3, $4, $5, $6)';
+      params = [userName, matchedName, uuid, match_uuid, false, false];
+      data = await db.query(query, params);
+      // if choice is 1
+      console.log('QUERY FINISHED');
+    } else {
+      // check in db if the matched user liked the user already
+      query =
+        'SELECT liked FROM matches WHERE userId = $1 AND matched_user = $2';
+      params = [match_uuid, uuid];
+      data = await db.query(query, params);
+      // if matched user hasn't liked user yet
+      console.log('DATAROWS', data.rows);
+      if (!data.rows.length) {
+        console.log('EMPTY DATA ROWS');
+        query =
+          // insert query into db with like = true and is_match = false
+          'INSERT INTO matches (userName, matchedName, userId, matched_user, liked, is_matched) VALUES ($1, $2, $3, $4, $5, $6)';
+        params = [userName, matchedName, uuid, match_uuid, true, false];
+        data = await db.query(query, params);
+        console.log('QUERY FINISHED');
+      } else {
+        // if matched user liked user (like = true)
+        console.log('OTHER PERSON SWIPED YOU');
+        if (data.rows[0]) {
+          console.log('THEY SWIPED 1');
+          // insert query into db with like = true and is_match = true
+          query =
+            'INSERT INTO matches (userName, matchedName, userId, matched_user, liked, is_matched) VALUES ($1, $2, $3, $4, $5, $6)';
+          params = [userName, matchedName, uuid, match_uuid, true, true];
+          data = await db.query(query, params);
+          console.log('QUERY FINISHED');
+          // update query into db with is_match = true where id = match_uuid
+          query =
+            'UPDATE matches SET is_matched = $1 WHERE userId = $2 AND matched_user = $3';
+          params = [true, match_uuid, uuid];
+          data = await db.query(query, params);
+          // otherwise, if matched user did not like user (like = false)
+          console.log('QUERY FINISHED');
+        } else {
+          console.log('THEY SWIPED 0');
+          // insert query into db with like = true and is_match = false
+          query =
+            'INSERT INTO matches (userName, matchedName, userId, matched_user, liked, is_matched) VALUES ($1, $2, $3, $4, $5, $6)';
+          params = [userName, matchedName, uuid, match_uuid, true, false];
+          data = await db.query(query, params);
+          console.log('QUERY FINISHED');
+        }
+      }
+    }
+    console.log('----------------------------------------');
+    return next();
+  } catch (err) {
+    return next({
+      log: `There was an error in getMatches middleware: ERROR ${err}`,
+      status: 400,
+      message: { err: 'IN CREATEMATCH MIDDLEWARE No hablo your language' },
     });
   }
 };

@@ -1,8 +1,5 @@
 import React from 'react';
-import Button from '@mui/material/Button';
 import GitHubIcon from '@mui/icons-material/GitHub';
-
-// const fetch = require('node-fetch');
 
 function SignupContainer() {
   const oAuthGo = () => {
@@ -11,19 +8,16 @@ function SignupContainer() {
 
   return (
     <div id="signupContainer">
-      {/* <p>signupContainer</p> */}
-      {/* <Button onClick={oAuthGo} variant="contained">Sign Up</Button> */}
-      <Button className='githubButton'
+      <p id='termText'>
+            By tapping Sign In, you agree to our Terms, Learn how we process your data in our Privacy Policy and Cookie Policy.
+          </p>
+      <button className='githubButton'
         data-testid='OAuth-2'
-        variant='contained'
-        color='secondary'
-        size='large'
-        startIcon={<GitHubIcon />}
-        sx={{ borderRadius: 2, fontWeight: 'bold', margin: 5, padding: 3 }}
+        start-icon={<GitHubIcon />}
         onClick={oAuthGo}
       >
         sign in with github
-      </Button>
+      </button>
     </div>
   );
 }

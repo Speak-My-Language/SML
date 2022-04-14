@@ -1,4 +1,3 @@
-/* eslint-disable import/no-dynamic-require */
 const cors = require('cors');
 const express = require('express');
 const cookieParser = require('cookie-parser');
@@ -55,6 +54,7 @@ app.use((err, req, res, next) => {
     message: { err: 'An error occurred' },
   };
   const errorObj = { ...defaultErr, ...err };
+  console.log('errorObj', errorObj);
   return res.status(errorObj.status).json(errorObj.message);
 });
 
@@ -62,3 +62,4 @@ app.use((err, req, res, next) => {
 app.listen(PORT, (req, res) => {
   console.log(`Beware on ${PORT}`);
 });
+
