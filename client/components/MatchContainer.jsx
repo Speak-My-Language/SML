@@ -4,7 +4,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 
 
-const array = [
+const matches = [
   {
     name: 'Yale',
     location: 'Yale York',
@@ -54,25 +54,6 @@ const array = [
 const backgroundImage = 'https://images.pexels.com/photos/531756/pexels-photo-531756.jpeg'
 
 function MatchContainer() {
-<<<<<<< HEAD
-  const [background, setBackground] = React.useState(backgroundImage);
-  const [matches, setMatches] = React.useState([]);
-  const [renderedMatches, setRenderedMatches] = React.useState();
-
-  const getMatches = () => {
-    const rendered = array.map((ele, idx) => <MatchesInfo key={idx} match={ele} />);
-    setRenderedMatches(rendered);
-    setMatches(array);
-  }
-
-  useEffect(getMatches, []);
-
-  return (
-    <div style={{ minHeight: '1000px' }}>
-    <Card id="sml" sx={{ minWidth: 275 }}>
-      <CardContent>
-          <p>PAY NOW</p>
-=======
   //const background = 'https://images.pexels.com/photos/531756/pexels-photo-531756.jpeg'
   const [background, setBackground] = React.useState(
     'https://images.pexels.com/photos/531756/pexels-photo-531756.jpeg'
@@ -103,7 +84,6 @@ function MatchContainer() {
         <CardContent>
           {renderedMatches}
           {/* <p>PAY NOW</p>
->>>>>>> dev
           <p>YOU HAVE NOT PAID YET</p>
           <p>PLEASE PAY OR OR YOU WILL</p>
           <h1>PAIR ALONE 4eva!!!!</h1> */}
