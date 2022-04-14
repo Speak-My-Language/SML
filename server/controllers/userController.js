@@ -7,7 +7,6 @@ userController.getUserProfile = async (req, res, next) => {
   try {
     const getUserQ = 'SELECT * FROM users WHERE node_id = $1;';
     const params = [id];
-    console.log(params);
     const data = await db.query(getUserQ, params);
     // console.log(data.rows[0]);
     res.locals.userProfile = data.rows[0];
@@ -37,9 +36,7 @@ userController.updateUser = async (req, res, next) => {
       profile.handle,
       id,
     ];
-    console.log(params);
     const data = await db.query(putUserQ, params);
-    console.log(data);
     // console.log(res.locals.userProfile);
     next();
   } catch (err) {
