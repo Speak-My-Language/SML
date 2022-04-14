@@ -13,12 +13,12 @@ const array = [
     company: 'Yale inc',
     website: 'www.yale.com',
     email: 'yale@email.com',
-    bio: "I am Yale.",
+    bio: 'I am Yale.',
     languages: {
-      'Javascript': 49040,
-      'Python': 34800,
-      'C': 9000,
-    }
+      Javascript: 49040,
+      Python: 34800,
+      C: 9000,
+    },
   },
   {
     name: 'Eric',
@@ -28,12 +28,12 @@ const array = [
     company: 'eric inc',
     website: 'www.eric.com',
     email: 'eric@email.com',
-    bio: "I am eric.",
+    bio: 'I am eric.',
     languages: {
-      'Javascript': 49040,
-      'Python': 34800,
-      'C': 9000,
-    }
+      Javascript: 49040,
+      Python: 34800,
+      C: 9000,
+    },
   },
   {
     name: 'Mireille',
@@ -43,17 +43,18 @@ const array = [
     company: 'mireille inc',
     website: 'www.mireille.com',
     email: 'mireille@email.com',
-    bio: "I am mireille.",
+    bio: 'I am mireille.',
     languages: {
-      'Javascript': 49040,
-      'Python': 34800,
-      'C': 9000,
-    }
+      Javascript: 49040,
+      Python: 34800,
+      C: 9000,
+    },
   },
 ];
 const backgroundImage = 'https://images.pexels.com/photos/531756/pexels-photo-531756.jpeg'
 
 function MatchContainer() {
+<<<<<<< HEAD
   const [background, setBackground] = React.useState(backgroundImage);
   const [matches, setMatches] = React.useState([]);
   const [renderedMatches, setRenderedMatches] = React.useState();
@@ -71,12 +72,44 @@ function MatchContainer() {
     <Card id="sml" sx={{ minWidth: 275 }}>
       <CardContent>
           <p>PAY NOW</p>
+=======
+  //const background = 'https://images.pexels.com/photos/531756/pexels-photo-531756.jpeg'
+  const [background, setBackground] = React.useState(
+    'https://images.pexels.com/photos/531756/pexels-photo-531756.jpeg'
+  );
+  // const [matches, setMatches] = React.useState([]);
+  const [renderedMatches, setRenderedMatches] = React.useState();
+
+  useEffect(() => {
+    async function getMatches() {
+      // let response = await fetch('http://localhost:3000/matches');
+      // response = await response.json();
+      // console.log('matches list', response);
+      let response = matches;
+      console.log(response);
+      const rendered = [];
+      response.map((el, ind) =>
+        rendered.push(<MatchesInfo key={ind} match={el} />)
+      );
+      setRenderedMatches(rendered);
+      console.log(renderedMatches);
+      // setMatches(response);
+    }
+    getMatches();
+  }, []);
+  return (
+    <div style={{ minHeight: '1000px' }}>
+      <Card id="sml" sx={{ minWidth: 275 }}>
+        <CardContent>
+          {renderedMatches}
+          {/* <p>PAY NOW</p>
+>>>>>>> dev
           <p>YOU HAVE NOT PAID YET</p>
           <p>PLEASE PAY OR OR YOU WILL</p>
-          <h1>PAIR ALONE 4eva!!!!</h1>
-      </CardContent>
+          <h1>PAIR ALONE 4eva!!!!</h1> */}
+        </CardContent>
       </Card>
-  </div>
+    </div>
   );
 }
 

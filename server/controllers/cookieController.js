@@ -1,6 +1,6 @@
 const db = require('../models/userModel.js');
 const cookieController = {};
-
+//save token should take the token and saves it into the cookie
 cookieController.saveToken = (req, res, next) => {
   res.cookie('auth_token', res.locals.access_token, { overwrite: true, httpOnly: false });
   return next();

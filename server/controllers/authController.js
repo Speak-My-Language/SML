@@ -18,13 +18,12 @@ authController.getToken = async (req, res, next) => {
     return next({
       log: `Error in authController.getToken Err: ${err.message}`,
       status: 500,
-      message: { err: 'An error occurred' },
+      message: { err: 'An error occurred in getToken' },
     });
   }
 };
 
 authController.getProfile = async (req, res, next) => {
-  // console.log('cookies from getProfile', req.cookies)
   const url = 'https://api.github.com/user';
   try {
     const profileInfoJSON = await fetch(url, {
@@ -35,13 +34,12 @@ authController.getProfile = async (req, res, next) => {
     });
     const profileInfo = await profileInfoJSON.json();
     res.locals.profile = profileInfo;
-    // console.log('res.locals in getProfile', res.locals.profile)
     return next();
   } catch (err) {
     return next({
       log: `Error in authController.getProfile Err: ${err.message}`,
       status: 500,
-      message: { err: 'An error occurred' },
+      message: { err: 'An error occurred in getProfile' },
     });
   }
 };
@@ -58,7 +56,8 @@ authController.getLanguages = async (req, res, next) => {
     });
     const languageTotals = {};
     const repos = await response.json();
-    const resp = await repos.map(async (repo) => { // repos
+    const resp = await repos.map(async (repo) => {
+      // repos
       response = await fetch(`${repo.url}/languages`, {
         method: 'GET',
         headers: {
@@ -68,22 +67,22 @@ authController.getLanguages = async (req, res, next) => {
       });
       response = await response.json();
       Object.keys(response).map(async (language) => {
-        if (languageTotals[language]) languageTotals[language] += response[language];
+        if (languageTotals[language])
+          languageTotals[language] += response[language];
         else languageTotals[language] = response[language];
       });
-      //res.locals.languages = languageTotals;
-      // console.log('Language Total Agg', languageTotals)
+      // res.locals.languages = languageTotals;
     });
-    Promise.allSettled(resp)
-      .then(async (values) => {
-        res.locals.languages = languageTotals;
-        return next();
-      });
+    Promise.allSettled(resp).then(async (values) => {
+      res.locals.languages = languageTotals;
+      // console.log('Language Total Agg', res.locals)
+      return next();
+    });
   } catch (err) {
     return next({
       log: `Error in authController.getLanguages Err: ${err.message}`,
       status: 500,
-      message: { err: 'An error occurred' },
+      message: { err: 'An error occurred in getLanguages' },
     });
   }
 };
