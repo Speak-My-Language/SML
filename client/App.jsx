@@ -29,12 +29,14 @@ function App() {
   }, [uri]);
 
   return (
-    <div id="landingContainer">
-      {nav}
-      {/* App Container */}
-      {/* <p>{uri}</p> */}
-      {container}
-    </div>
+    <>
+      <div className="main-feed-container">
+        {nav}
+        {/* App Container */}
+        {/* <p>{uri}</p> */}
+        {container}
+      </div>
+    </>
   );
 }
 

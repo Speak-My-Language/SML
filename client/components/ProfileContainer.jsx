@@ -72,26 +72,25 @@ function ProfileContainer() {
   }
 
   return (
-    <Card id="sml" sx={{ minWidth: 275 }}>
-      <CardContent>
-        <form action="/user" method="PUT">
-          {Object.keys(profile).map((el) => (
-            <div key={el}>
-              <label>{el}</label>
-              <br />
-              <Input
-                className="updateProfileInput"
-                name={el}
-                type="text"
-                value={profile[el]}
-                onChange={changeHandler}
-              />
-              <br />
-            </div>
-          ))}
-          {changed ? (
+    <div id="profile-container">
+      <Card id="sml" sx={{ minWidth: 550, borderRadius: 2 }}>
+        <CardContent>
+          <form action="/user" method="PUT">
+            {Object.keys(profile).map((el) => (
+              <div key={el}>
+                <label>{el}</label>
+                <br />
+                <Input
+                  className="updateProfileInput"
+                  type="text"
+                  value={profile[el]}
+                />
+                <br />
+              </div>
+            ))}
             <Button
               className="updateProfileBtn"
+              data-testid="OAuth-2"
               variant="contained"
               color="secondary"
               size="large"
@@ -101,16 +100,15 @@ function ProfileContainer() {
                 margin: 5,
                 padding: 1,
               }}
-              onClick={() => submitHandler()}
+              onClick={() => setChoice({ name: currentUser.name, choice: 0 })}
             >
               Update
             </Button>
-          ) : (
-            <Button className="updateProfileBtn">Updated!</Button>
-          )}
-        </form>
-      </CardContent>
-    </Card>
+            {/* <Button type="submit" onClick={() => setCounter()}>Update</Button> */}
+          </form>
+        </CardContent>
+      </Card>
+    </div>
   );
 }
 
