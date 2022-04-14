@@ -103,13 +103,13 @@ function ProgramContainer() {
 
   return (
     <>
-      <div id="program-container" sx={{ minWidth: 275 }}>
+      <div id="program-container" >
         <CardContent>
           <div>{message}</div>
           <Button
-            variant="contained"
-            color="secondary"
-            size="large"
+            variant='contained'
+            color='secondary'
+            // size='large'
             sx={{ borderRadius: 2, fontWeight: 'bold', margin: 5, padding: 3 }}
             className="matchButtons"
             onClick={() => setChoice({ name: currentUser.name, choice: 0 })}
@@ -117,9 +117,9 @@ function ProgramContainer() {
             0
           </Button>
           <Button
-            variant="contained"
-            color="secondary"
-            size="large"
+            variant='contained'
+            color='secondary'
+            // size='large'
             sx={{ borderRadius: 2, fontWeight: 'bold', margin: 5, padding: 3 }}
             className="matchButtons"
             onClick={() => setChoice({ name: currentUser.name, choice: 1 })}
