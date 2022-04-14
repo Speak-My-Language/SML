@@ -49,8 +49,8 @@ function ChartContainer({ user, match }) {
     .reduce((acc, curr, idx) => {
       acc[idx] = {
         subject: curr,
-        A: Math.min(Math.round(userL[curr] / 10000), 150),
-        B: Math.min(Math.round(matchL[curr] / 10000), 150),
+        A: Math.min(Math.round(userL[curr] / 100), 150),
+        B: Math.min(Math.round(matchL[curr] / 100), 150),
         fullMark: 150,
       };
       return acc;
