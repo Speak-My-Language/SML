@@ -13,7 +13,7 @@ function SignupContainer() {
           </p>
       <button className='githubButton'
         data-testid='OAuth-2'
-        startIcon={<GitHubIcon />}
+        start-icon={<GitHubIcon />}
         onClick={oAuthGo}
       >
         sign in with github

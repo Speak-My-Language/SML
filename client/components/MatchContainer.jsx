@@ -1,14 +1,8 @@
 import React, { useEffect } from 'react';
 import MatchesInfo from './MatchesInfo';
-import Input from '@mui/material/Input';
-import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
 
-// const fetch = require('node-fetch');
 
 // const matches = [
 //   {

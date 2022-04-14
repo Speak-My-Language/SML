@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Cookies from 'js-cookie';
+import { FormControl, FormLabel, TextField } from '@mui/material';
 
 function ProfileContainer() {
   // ---------- Default state and hooks ----------
@@ -71,23 +72,25 @@ function ProfileContainer() {
     setChanged(false);
   }
 
+  const profileForm = Object.keys(profile).map(ele =>
+    (
+      <TextField
+        key={ele}
+        className="updateProfileInput"
+        variant="standard"
+        margin="dense"
+        label={profile[ele]}
+        helperText={ele}
+      />
+    )
+  );
+  
   return (
     <div id="profile-container">
-      <Card id="sml" sx={{ minWidth: 550, borderRadius: 2 }}>
+      <Card id="sml" sx={{ minHeight: 700, minWidth: 550, borderRadius: 2 }}>
         <CardContent>
-          <form action="/user" method="PUT">
-            {Object.keys(profile).map((el) => (
-              <div key={el}>
-                <label>{el}</label>
-                <br />
-                <Input
-                  className="updateProfileInput"
-                  type="text"
-                  value={profile[el]}
-                />
-                <br />
-              </div>
-            ))}
+          <FormControl action="/user" method="PUT" sx={{p: 8}}>
+            { profileForm }
             <Button
               className="updateProfileBtn"
               data-testid="OAuth-2"
@@ -99,13 +102,13 @@ function ProfileContainer() {
                 fontWeight: 'bold',
                 margin: 5,
                 padding: 1,
+                backgroundColor: "#8ccfde",
               }}
               onClick={() => setChoice({ name: currentUser.name, choice: 0 })}
             >
               Update
             </Button>
-            {/* <Button type="submit" onClick={() => setCounter()}>Update</Button> */}
-          </form>
+          </FormControl>
         </CardContent>
       </Card>
     </div>

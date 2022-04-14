@@ -2,8 +2,9 @@ const db = require('../models/userModel.js');
 
 const logoutController = {};
 
-// logoutController.methodThatWeDefine = (req, res, next) => {
-
-// }
+logoutController.logout = (req, res, next) => {
+  // logout handler could delete cookies (i think) or remove database record
+  return next();
+}
 
 module.exports = logoutController;

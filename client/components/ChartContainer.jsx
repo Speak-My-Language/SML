@@ -1,31 +1,32 @@
 import React from 'react';
 import Chart from 'react-google-charts';
-import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from 'recharts';
+import {
+  Radar,
+  RadarChart,
+  PolarGrid,
+  PolarAngleAxis,
+  PolarRadiusAxis,
+  Legend,
+} from 'recharts';
 
 // const data = [...Object.entries(JSON.parse(props.languages))]
-const data = [
+let data = [
   {
-    subject: "Javascript",
+    subject: 'Javascript',
     A: 120,
-    // B: 110,
+    B: 110,
     // fullMark: 150
   },
   {
-    subject: "Python",
-    A: 56,
-    // B: 130,
-    // fullMark: 150
-  },
-  {
-    subject: "HTML",
+    subject: 'HTML',
     A: 86,
-    // B: 130,
+    B: 130,
     // fullMark: 150
   },
   {
-    subject: "sdfds",
+    subject: 'CSS',
     A: 34,
-    // B: 130,
+    B: 130,
     // fullMark: 150
   },
 ];
@@ -35,34 +36,55 @@ const data = [
  * languages in props is passed in from ProgramContainer
  */
 
-function ChartContainer(props) {
+function ChartContainer({ user, match }) {
+  const userL = JSON.parse(user.languages);
+  const matchL = JSON.parse(match.languages);
+
+  const radars = Object.keys(userL)
+    .filter((key) => matchL.hasOwnProperty(key))
+    .reduce((acc, curr, idx) => {
+      acc[idx] = curr;
+      return acc;
+    }, [])
+    .reduce((acc, curr, idx) => {
+      acc[idx] = {
+        subject: curr,
+        A: Math.min(Math.round(userL[curr] / 100), 150),
+        B: Math.min(Math.round(matchL[curr] / 100), 150),
+        fullMark: 150,
+      };
+      return acc;
+    },[]
+  );
+
   return (
     <div>
-      <RadarChart
-      // cx={300}
-      // cy={250}
-      // outerRadius={150}
-      width={500}
-      height={500}
-      data={data}
-    >
-      <PolarGrid />
-      <PolarAngleAxis dataKey="subject" />
-      <PolarRadiusAxis />
-      <Radar
-        name="Mike"
-        dataKey="A"
-        stroke="#8884d8"
-        fill="#8884d8"
-        fillOpacity={0.6}
-      />
-    </RadarChart>
+      <RadarChart width={500} height={500} data={radars}>
+        <PolarGrid />
+        <PolarAngleAxis dataKey="subject" />
+        <Radar
+          name={user.name}
+          dataKey="A"
+          stroke="#8884d8"
+          fill="#77c8da"
+          fillOpacity={0.85}
+        />
+        <Radar
+          name={match.name}
+          dataKey="B"
+          stroke="#77c8da"
+          fill="#8884d8"
+          fillOpacity={0.18}
+        />
+        <Legend />
+      </RadarChart>
     </div>
   );
 }
 export default ChartContainer;
 
-{/* <Chart
+{
+  /* <Chart
   width="500px"
   height="300px"
   chartType="PieChart"
@@ -73,4 +95,5 @@ export default ChartContainer;
     backgroundColor: 'chartreuse',
     font: 'helvetica',
   }}
-/> */}
+/> */
+}
