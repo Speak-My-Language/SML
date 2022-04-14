@@ -14,7 +14,7 @@ matchesRouter.post('/', matchesController.createMatch, async (req, res) => {
 
 matchesRouter.get(
   '/',
-  cookieController.getUserSession,
+  // cookieController.getUserSession,
   matchesController.getMatches,
   async (req, res) => {
     res.setHeader('Access-Control-Allow-Credentials', true);
@@ -33,8 +33,9 @@ matchesRouter.get(
       'Access-Control-Allow-Headers',
       'X-Requested-With,content-type, Authorization'
     );
-
-    return res.status(200).redirect('http://localhost:8080/?matches');
+    console.log(res.locals.userMatches, res.locals.userSession);
+    return res.status(200).send(res.locals.userMatches);
+    // return res.status(200).redirect('http://localhost:8080/?matches');
   }
 );
 

@@ -63,9 +63,10 @@ function MatchContainer() {
 
   useEffect(() => {
     async function getMatches() {
-      // let response = await fetch('http://localhost:3000/matches');
-      // response = await response.json();
-      // console.log('matches list', response);
+      // const test = await fetch('http://localhost:3000/matches');
+      // const testRes = await test.json();
+      // console.log('matches list', testRes);
+
       let response = matches;
       const rendered = [];
       response.map((el, ind) => {
