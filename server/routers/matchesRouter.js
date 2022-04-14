@@ -18,23 +18,8 @@ matchesRouter.get(
   matchesController.getMatches,
   async (req, res) => {
     res.setHeader('Access-Control-Allow-Credentials', true);
-    res.setHeader(
-      'Access-Control-Allow-Headers',
-      'X-Requested-With,content-type,Authorization ,Accept'
-    );
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    res.setHeader('Access-Control-Expose-Headers', 'Authorization');
-    res.setHeader(
-      'Access-Control-Allow-Methods',
-      'GET, POST, OPTIONS, PUT, PATCH, DELETE'
-    );
-    res.setHeader(
-      'Access-Control-Allow-Headers',
-      'X-Requested-With,content-type, Authorization'
-    );
-
-    return res.status(200).redirect('http://localhost:8080/?matches');
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
+    return res.status(200).json(res.locals.userMatches)
   }
 );
 
