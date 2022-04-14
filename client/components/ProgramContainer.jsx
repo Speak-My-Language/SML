@@ -24,8 +24,8 @@ function ProgramContainer() {
       <div className="languageChartDiv">
         <ChartContainer user={loggedUser} match={currentUser} />
       </div>
-      <div>{`${currentUser.name}`}</div>
-      <div style={{ fontSize: '1rem' }}>{`${currentUser.languages}`}</div>
+      <br />
+      {/* <div style={{ fontSize: '1rem' }}>`${currentUser.languages}`</div> */}
     </div>
   );
 
@@ -66,7 +66,7 @@ function ProgramContainer() {
       if (userList) {
         let response = await fetch(`http://localhost:3000/matches`, {
           method: 'POST',
-          headers: {'Content-Type': 'application/json'},
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             node_id: userId,
             match_uuid: currentUser.id,
@@ -107,7 +107,7 @@ function ProgramContainer() {
 
   return (
     <>
-      <div id="program-container" >
+      <div id="program-container">
         <CardContent>
           <div>{message}</div>
           <button
