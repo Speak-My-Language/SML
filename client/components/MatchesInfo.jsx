@@ -19,14 +19,17 @@ TO-DO: How do we want matches to be displayed. Is list really the way?
 
 function MatchesInfo(props) {
   return (
-    <ul>
+    <>
+    <div id='inner-matches-box'>
+      {/* <p id="matches-title">Matches</p> */}
       {/* render each match with some match information*/}
       {Object.keys(props.matches).map((el) => (
         <li key={`${el}: ${props.matches[el]}`}>
           {`${el}: ${JSON.stringify(props.matches[el])}`}
         </li>
       ))}
-    </ul>
+    </div>
+    </>
   );
 }
 

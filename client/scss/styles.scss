@@ -13,10 +13,9 @@ body {
 }
 
 #program-container {
-  // font-family: 'Varela Round';
-  // font-size: 15px;
-  // box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-  // box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  font-family: 'Fredoka';
+  font-size: 15px;
+  overflow-wrap: anywhere;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
   width:600px;
   height: 600px;
@@ -71,6 +70,54 @@ body {
     left: 0;
     bottom: 0;
 }
+#matches-title {
+  font-family: 'Press Start 2P', 'Varela Round';
+  font-size: 28px;
+}
+#inner-matches-box {
+  // font-family: 'Press Start 2P', 'Varela Round';
+  font-size: 28px;
+  padding-top: 3px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+
+}
+li {
+  font-size: 25px;
+  padding-top: 40x;
+  margin-top: 10px;
+  margin-left: 10px;
+  inline-size: 575px;
+  overflow: hidden;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 500;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  // justify-content: space-between;
+  flex-wrap: wrap;
+  text-align: left;
+  overflow-wrap: anywhere;
+  word-wrap: break-all;
+  hyphens: auto;
+  white-space: normal;
+  
+}
+#matches-container {
+  width:600px;
+  height: auto;
+  background-color: rgb(255, 255, 255);
+  position: relative;
+  display: block;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 50px;
+  top: 0px;
+  bottom:0px;
+  text-align:center;
+  border-radius: 5px;
+}
 .githubButton {
   font-size: 25px;
   color: white;
@@ -119,11 +166,6 @@ body {
 }
 #navbar {
   display: flex;
-  // background: linear-gradient(
-  //   180deg,
-  //   rgba(179, 141, 199, 0.904) 0%,
-  //   white 75%
-  // );
   background-color: white;
   font-family: 'Press Start 2P', 'Orbitron', sans-serif;
   padding: 30px;
