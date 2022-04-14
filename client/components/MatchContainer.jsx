@@ -4,54 +4,53 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 
 
-const matches = [
-  {
-    name: 'Yale',
-    location: 'Yale York',
-    handle: '@yale',
-    twitter: 'yale_university',
-    company: 'Yale inc',
-    website: 'www.yale.com',
-    email: 'yale@email.com',
-    bio: 'I am Yale.',
-    languages: {
-      Javascript: 49040,
-      Python: 34800,
-      C: 9000,
-    },
-  },
-  {
-    name: 'Eric',
-    location: 'Eric Hagen-Daz',
-    handle: '@eric',
-    twitter: '@eric',
-    company: 'eric inc',
-    website: 'www.eric.com',
-    email: 'eric@email.com',
-    bio: 'I am eric.',
-    languages: {
-      Javascript: 49040,
-      Python: 34800,
-      C: 9000,
-    },
-  },
-  {
-    name: 'Mireille',
-    location: 'mireille Hagen-Daz',
-    handle: '@mireille',
-    twitter: '@mireille',
-    company: 'mireille inc',
-    website: 'www.mireille.com',
-    email: 'mireille@email.com',
-    bio: 'I am mireille.',
-    languages: {
-      Javascript: 49040,
-      Python: 34800,
-      C: 9000,
-    },
-  },
-];
-const backgroundImage = 'https://images.pexels.com/photos/531756/pexels-photo-531756.jpeg'
+// const matches = [
+//   {
+//     name: 'Yale',
+//     location: 'Yale York',
+//     handle: '@yale',
+//     twitter: 'yale_university',
+//     company: 'Yale inc',
+//     website: 'www.yale.com',
+//     email: 'yale@email.com',
+//     bio: 'I am Yale.',
+//     languages: {
+//       Javascript: 49040,
+//       Python: 34800,
+//       C: 9000,
+//     },
+//   },
+//   {
+//     name: 'Eric',
+//     location: 'Eric Hagen-Daz',
+//     handle: '@eric',
+//     twitter: '@eric',
+//     company: 'eric inc',
+//     website: 'www.eric.com',
+//     email: 'eric@email.com',
+//     bio: 'I am eric.',
+//     languages: {
+//       Javascript: 49040,
+//       Python: 34800,
+//       C: 9000,
+//     },
+//   },
+//   {
+//     name: 'Mireille',
+//     location: 'mireille Hagen-Daz',
+//     handle: '@mireille',
+//     twitter: '@mireille',
+//     company: 'mireille inc',
+//     website: 'www.mireille.com',
+//     email: 'mireille@email.com',
+//     bio: 'I am mireille.',
+//     languages: {
+//       Javascript: 49040,
+//       Python: 34800,
+//       C: 9000,
+//     },
+//   },
+// ];
 
 function MatchContainer() {
   //const background = 'https://images.pexels.com/photos/531756/pexels-photo-531756.jpeg'
@@ -63,11 +62,12 @@ function MatchContainer() {
 
   useEffect(() => {
     async function getMatches() {
-      // const test = await fetch('http://localhost:3000/matches');
-      // const testRes = await test.json();
-      // console.log('matches list', testRes);
-
-      let response = matches;
+      console.log('SOME LOG HERE FOR GETMATCHES');
+      let response = await fetch('http://localhost:3000/matches',{
+        credentials: 'include',
+      });
+      response = await response.json();
+      console.log('matches list', response);
       const rendered = [];
       response.map((el, ind) => {
         rendered.push(<MatchesInfo key={el.name} matches={el} />);
