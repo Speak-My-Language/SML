@@ -27,15 +27,9 @@ signupController.storeUserInDb = async (req, res, next) => {
     const lookUpQ = 'SELECT u.node_id FROM users u WHERE u.node_id = $1;';
     let params = [node_id];
     const userDbQuery = await db.query(lookUpQ, params);
-<<<<<<< HEAD
 
     if (userDbQuery.rows.length === 0) {
       // no user exists for that node_id
-=======
-    // console.log('Languages: ', res.locals.languages)
-    // console.log('JSON Languages: ', [...Object.entries(JSON.parse(props.languages))])
-    if (userDbQuery.rows.length === 0) { // no user exists for that node_id
->>>>>>> dev
       const storeUserInDb = `INSERT INTO users 
       (id, name, location, handle, repos_url, twitter, 
         company, website, email, node_id, bio, languages)

@@ -4,7 +4,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 
 
-const array = [
+const matches = [
   {
     name: 'Yale',
     location: 'Yale York',

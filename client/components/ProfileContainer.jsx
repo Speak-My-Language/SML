@@ -72,7 +72,6 @@ function ProfileContainer() {
     setChanged(false);
   }
 
-<<<<<<< HEAD
   const profileForm = Object.keys(profile).map(ele =>
     (
       <TextField
@@ -92,25 +91,6 @@ function ProfileContainer() {
         <CardContent>
           <FormControl action="/user" method="PUT" sx={{p: 8}}>
             { profileForm }
-=======
-  return (
-    <div id="profile-container">
-      <Card id="sml" sx={{ minWidth: 550, borderRadius: 2 }}>
-        <CardContent>
-          <form action="/user" method="PUT">
-            {Object.keys(profile).map((el) => (
-              <div key={el}>
-                <label>{el}</label>
-                <br />
-                <Input
-                  className="updateProfileInput"
-                  type="text"
-                  value={profile[el]}
-                />
-                <br />
-              </div>
-            ))}
->>>>>>> dev
             <Button
               className="updateProfileBtn"
               data-testid="OAuth-2"
@@ -122,21 +102,13 @@ function ProfileContainer() {
                 fontWeight: 'bold',
                 margin: 5,
                 padding: 1,
-<<<<<<< HEAD
                 backgroundColor: "#8ccfde",
-=======
->>>>>>> dev
               }}
               onClick={() => setChoice({ name: currentUser.name, choice: 0 })}
             >
               Update
             </Button>
-<<<<<<< HEAD
           </FormControl>
-=======
-            {/* <Button type="submit" onClick={() => setCounter()}>Update</Button> */}
-          </form>
->>>>>>> dev
         </CardContent>
       </Card>
     </div>
