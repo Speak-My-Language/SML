@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Cookies from 'js-cookie';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -14,23 +15,27 @@ function ProgramContainer() {
   const [userList, setUserList] = React.useState();
   const [currentUser, setCurrentUser] = React.useState();
   const [message, setMessage] = React.useState('Loading');
-  const [userId, setUserId] = React.useState();
+  const [userId, setUserId] = React.useState(Cookies.get('user_session'));
+  const [loggedUser, setLoggedUser] = useState();
 
   // Create child component
   const userProfile = () => (
     <div>
       <div className="languageChartDiv">
-        <ChartContainer languages={currentUser.languages} />
+        <ChartContainer user={loggedUser} match={currentUser} />
       </div>
-      <div>{`${currentUser.name}`}</div>
-      <div style={{ fontSize: '1rem' }}>{`${currentUser.languages}`}</div>
+      <br />
+      {/* <div style={{ fontSize: '1rem' }}>`${currentUser.languages}`</div> */}
     </div>
   );
 
   React.useEffect(() => {
     async function asyncSetUser() {
       let response = await fetch('http://localhost:3000/newProgrammer');
+      let myProfile = await fetch(`http://localhost:3000/user/${userId}`);
       response = await response.json();
+      myProfile = await myProfile.json();
+      setLoggedUser(myProfile);
       setUserId(response[1]);
       const nextUser = response[0].pop();
       setUserList(response[0]);
@@ -58,11 +63,10 @@ function ProgramContainer() {
 
   React.useEffect(() => {
     async function getNextUser() {
-      console.log(currentUser);
       if (userList) {
         let response = await fetch(`http://localhost:3000/matches`, {
           method: 'POST',
-          headers: {'Content-Type': 'application/json'},
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             node_id: userId,
             match_uuid: currentUser.id,
@@ -103,7 +107,7 @@ function ProgramContainer() {
 
   return (
     <>
-      <div id="program-container" >
+      <div id="program-container">
         <CardContent>
           <div>{message}</div>
           <button

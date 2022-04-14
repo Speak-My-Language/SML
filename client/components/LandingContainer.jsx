@@ -13,7 +13,7 @@ const LandingContainer = () => {
   return (
     <div className="main-login-container">
       <div id="toptext"> 
-        <i class="fa-solid fa-terminal"></i>          
+        <i className="fa-solid fa-terminal"></i>          
         Speaking My Language 
       </div>
       <div id="bottomtext"> 

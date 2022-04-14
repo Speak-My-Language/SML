@@ -14,7 +14,7 @@ matchesRouter.post('/', matchesController.createMatch, async (req, res) => {
 
 matchesRouter.get(
   '/',
-  cookieController.getUserSession,
+  // cookieController.getUserSession,
   matchesController.getMatches,
   async (req, res) => {
     res.setHeader('Access-Control-Allow-Credentials', true);
