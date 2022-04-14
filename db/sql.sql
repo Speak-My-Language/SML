@@ -8,17 +8,21 @@
 --   company VARCHAR,
 --   website VARCHAR,
 --   email VARCHAR,
---   node_id VARCHAR,
 --   bio TEXT,
+--   node_id VARCHAR,
 --   languages VARCHAR
---   )
+--   );
 
 
 -- CREATE TABLE matches (
---   id UUID NOT NULL PRIMARY KEY,
---   matched_user VARCHAR, <- change to uuid eventually
+--   id SERIAL NOT NULL PRIMARY KEY,
+--   userName VARCHAR,
+--   userId VARCHAR,
+--   matched_user VARCHAR,
+--   matchedName VARCHAR,
+--   liked BOOLEAN,
 --   is_matched BOOLEAN
---   )
+--   );
 
 -- this is the table we're pulling all users from for the newProgrammers controller
 -- -- CREATE TABLE all_users (
@@ -84,3 +88,6 @@
   }
 }
 */
+
+
+-- all_users table is depreciated
