@@ -111,9 +111,7 @@ function ProgramContainer() {
         <CardContent>
           <div>{message}</div>
           <button
-            // variant='contained'
-            // color='secondary'
-            // size='large'
+            
             sx={{ borderRadius: 2, fontWeight: 'bold', margin: 5, padding: 3 }}
             className="matchButtons"
             onClick={() => setChoice({ name: currentUser.name, choice: 0 })}
@@ -121,17 +119,13 @@ function ProgramContainer() {
             0
           </button>
           <button
-            // variant='contained'
-            // color='secondary'
-            // size='large'
+          
             sx={{ borderRadius: 2, fontWeight: 'bold', margin: 5, padding: 3 }}
             className="matchButtons"
             onClick={() => setChoice({ name: currentUser.name, choice: 1 })}
           >
             1
           </button>
-          {/* <Button type="button" className="matchButtons" onClick={() => setChoice({ name: currentUser.name, choice: 0 })}>0</Button>  */}
-          {/* <Button type="button" className="matchButtons" onClick={() => setChoice({ name: currentUser.name, choice: 1 })}>1</Button>  */}
         </CardContent>
       </div>
     </>

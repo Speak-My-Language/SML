@@ -18,7 +18,7 @@ matchesController.getMatches = async (req, res, next) => {
     const params = [res.locals.userSession]
     const data = await db.query(getMatchesQ, params);
     res.locals.userMatches = data.rows;
-    console.log('THIS IS PARAMS: ' ,params);
+    console.log('THIS IS PARAMS: ', params);
     console.log('RES.LOCAL INFO USER MATCHES', res.locals.userMatches);
     return next();
   } catch (err) {

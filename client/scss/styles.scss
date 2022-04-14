@@ -13,10 +13,9 @@ body {
 }
 
 #program-container {
-  // font-family: 'Varela Round';
-  // font-size: 15px;
-  // box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-  // box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  font-family: 'Fredoka';
+  font-size: 15px;
+  overflow-wrap: anywhere;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
   width:600px;
   height: 600px;
@@ -76,7 +75,6 @@ body {
     left: 0;
     bottom: 0;
 }
-
 .githubButton {
   font-size: 25px;
   color: white;
@@ -125,11 +123,6 @@ body {
 }
 #navbar {
   display: flex;
-  // background: linear-gradient(
-  //   180deg,
-  //   rgba(179, 141, 199, 0.904) 0%,
-  //   white 75%
-  // );
   background-color: white;
   font-family: 'Press Start 2P', 'Orbitron', sans-serif;
   padding: 30px;

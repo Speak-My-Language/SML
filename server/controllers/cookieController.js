@@ -1,3 +1,4 @@
+const { user } = require('pg/lib/defaults');
 const db = require('../models/userModel.js');
 const cookieController = {};
 //save token should take the token and saves it into the cookie
