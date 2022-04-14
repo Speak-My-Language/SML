@@ -5,21 +5,28 @@ import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from 'r
 // const data = [...Object.entries(JSON.parse(props.languages))]
 const data = [
   {
-    "Math": 120,
+    subject: "Javascript",
+    A: 120,
     // B: 110,
-    fullMark: 150
+    // fullMark: 150
   },
   {
-    subject: "Chinese",
-    A: 98,
+    subject: "Python",
+    A: 56,
     // B: 130,
-    fullMark: 150
+    // fullMark: 150
   },
   {
-    subject: "English",
+    subject: "HTML",
     A: 86,
     // B: 130,
-    fullMark: 150
+    // fullMark: 150
+  },
+  {
+    subject: "sdfds",
+    A: 34,
+    // B: 130,
+    // fullMark: 150
   },
 ];
 
