@@ -8,22 +8,24 @@ const matchesController = {};
 // user id as first column
 matchesController.getMatches = async (req, res, next) => {
   try {
-    const getMatchesQ =
-      'SELECT * FROM matches m INNER JOIN users u ON m.id = u.id WHERE u.node_id = $1;';
-    `SELECT * FROM user u WHERE `;
-    //GET ALL USER INFORMATION FROM USERS TABLE WHERE USER IS EQUAL TO
-    //QUERY TO LOOK FOR USER INFORMATION OF MATCHED USER WHERE USERID = USERID AND ISMATCHED IS TRUE
+    const getMatchesQ = `SELECT name, location, handle, email, bio, languages FROM 
+      (SELECT matched_user 
+        FROM matches m 
+        WHERE m.userid::uuid = (SELECT id FROM users WHERE node_id= $1)::uuid
+        AND m.is_matched = 'true') AS newTable 
+      INNER JOIN users u ON newTable.matched_user::uuid = u.id::uuid;`
 
-    const params = [res.locals.userSession];
-    // const params = [res.locals.]
+    const params = [res.locals.userSession]
     const data = await db.query(getMatchesQ, params);
-    res.locals.userMatches = JSON.stringify(data.rows);
+    res.locals.userMatches = data.rows;
+    console.log('THIS IS PARAMS: ' ,params);
+    console.log('RES.LOCAL INFO USER MATCHES', res.locals.userMatches);
     return next();
   } catch (err) {
     return next({
       log: `There was an error in getMatches middleware: ERROR ${err}`,
       status: 400,
-      message: { err: 'No hablo your language' },
+      message: { err: 'ERROR IN GETTING MATCHES No hablo your language' },
     });
   }
 };
@@ -43,6 +45,14 @@ matchesController.createMatch = async (req, res, next) => {
     let data = await db.query(query, params);
     let uuid = data.rows[0].id;
     let userName = data.rows[0].name;
+
+    //check to see if the user had alrady swiped on upcoming user
+    query = 'SELECT * FROM matches WHERE userid = $1 AND matched_user = $2;';
+    params = [uuid, match_uuid];
+    data = await db.query(query, params);
+    if(data.rows.length){
+      return next();
+    }
 
     // if choice is 0
     if (choice === 0) {

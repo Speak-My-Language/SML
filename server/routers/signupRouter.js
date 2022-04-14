@@ -22,6 +22,7 @@ router.get(
   authController.getLanguages,
   signupController.storeUserInDb,
   async (req, res) => {
+    console.log('THIS IS COOKIE FOR NOW', req.cookies)
     return res.status(200).redirect('http://localhost:3000/pairProgram');
   }
 );

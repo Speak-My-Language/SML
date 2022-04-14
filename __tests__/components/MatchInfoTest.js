@@ -10,7 +10,7 @@ import App from '../../client/App';
 import MatchesInfo from '../../client/components/MatchesInfo';
 
 
-describe('Unit Testing MatchContainer Components', () => {
+describe('Unit Testing MatchInfo Components', () => {
   describe('Matches', () => {
     let text;
     const props = {
