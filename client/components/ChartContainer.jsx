@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Chart from 'react-google-charts';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from 'recharts';
 
@@ -29,6 +29,11 @@ const data = [
     // fullMark: 150
   },
 ];
+
+/**
+ * Contains chart to be used for displaying language percentage breakdown
+ * languages in props is passed in from ProgramContainer
+ */
 
 function ChartContainer(props) {
   return (
