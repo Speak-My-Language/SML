@@ -36,7 +36,7 @@ describe('Unit Testing Program Container Components', () => {
      //trigger user events
      userEvent.click(screen.getByText('0'));
      userEvent.click(screen.getByText('1'));
-     //check expect to have been called
+     //check expect to have been called (PROGRAM CONTAINER BUTTONS CALL A SETSTATE REACT HOOK. HOW DO YOU TEST?)
      expect(choice.reject).toHaveBeenCalledTimes(1);
      expect(choice.accept).toHaveBeenCalledTimes(1);
     });
