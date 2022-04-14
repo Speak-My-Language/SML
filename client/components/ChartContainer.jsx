@@ -3,17 +3,11 @@ import Chart from 'react-google-charts';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Legend } from 'recharts';
 
 // const data = [...Object.entries(JSON.parse(props.languages))]
-const data = [
+let data = [
   {
     subject: "Javascript",
     A: 120,
     B: 110,
-    // fullMark: 150
-  },
-  {
-    subject: "Python",
-    A: 56,
-    B: 130,
     // fullMark: 150
   },
   {
@@ -23,13 +17,12 @@ const data = [
     // fullMark: 150
   },
   {
-    subject: "sdfds",
+    subject: "CSS",
     A: 34,
     B: 130,
     // fullMark: 150
   },
 ];
-
 
 /**
  * Contains chart to be used for displaying language percentage breakdown
@@ -37,16 +30,27 @@ const data = [
  */
 
 function ChartContainer({ user, match }) {
-  // {"JavaScript":227786,"HTML":99725,"CSS":67359,"SCSS":28496}
-  const languages = Object.values(JSON.parse(user.languages));
-  // const metrics = Object.entries(languages)
-  //   .map(arr => {
-  //     return ["subject", "A", "B", "fullMark"].reduce((acc, curr, idx) => {
-  //       acc[curr] = arr[idx] || 150;
-  //       return acc;
-  //     }, {});
-  //   });
-  const event = () => { return  }
+  const userL = JSON.parse(user.languages);
+  const matchL = JSON.parse(match.languages);
+
+  const radars = Object.keys(userL)
+    .filter(key => matchL.hasOwnProperty(key))
+    .reduce((acc, curr, idx) => {
+      acc[idx] = curr;
+      return acc;
+    }, [])
+    .reduce((acc, curr, idx) => {
+      acc[idx] = {
+        subject: curr,
+        A: Math.min(Math.round(userL[curr] / 1000), 150),
+        B: Math.min(Math.round(matchL[curr] / 1000), 150),
+        fullMark: 150
+      };
+      return acc;
+    }, []);
+
+    console.log(radars, userL.Java);
+  
   return (
     <div>
       <RadarChart
@@ -55,20 +59,20 @@ function ChartContainer({ user, match }) {
       // outerRadius={90}
       width={500}
       height={500}
-      data={data}
+      data={radars}
     >
       <PolarGrid />
       <PolarAngleAxis dataKey="subject" />
-      <PolarRadiusAxis angle={45} domain={[0, 150]} />
+      {/* <PolarRadiusAxis angle={45} domain={[0, 150]} /> */}
       <Radar
-        name="Mike"
+        name={user.name}
         dataKey="A"
         stroke="#8884d8"
         fill="#77c8da"
         fillOpacity={0.85}
       />
       <Radar
-        name="Tyson"
+        name={match.name}
         dataKey="B"
         stroke="#77c8da"
         fill="#8884d8"

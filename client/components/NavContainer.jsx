@@ -4,7 +4,7 @@ function NavContainer() {
   return (
     <div id="navbar">
       <div id="nav-title"> 
-        <i class="fa-solid fa-terminal"></i>          
+        <i className="fa-solid fa-terminal"></i>          
         Speaking My Language 
       </div>
       <a href="/?program">Pair</a>

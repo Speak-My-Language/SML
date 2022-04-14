@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Cookies from 'js-cookie';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -14,7 +15,7 @@ function ProgramContainer() {
   const [userList, setUserList] = React.useState();
   const [currentUser, setCurrentUser] = React.useState();
   const [message, setMessage] = React.useState('Loading');
-  const [userId, setUserId] = React.useState();
+  const [userId, setUserId] = React.useState(Cookies.get('user_session'));
   const [loggedUser, setLoggedUser] = useState();
 
   // Create child component
@@ -31,7 +32,7 @@ function ProgramContainer() {
   React.useEffect(() => {
     async function asyncSetUser() {
       let response = await fetch('http://localhost:3000/newProgrammer');
-      let myProfile = await fetch(`http://localhost:3000/user/MDQ6VXNlcjE1MDk4OTIx`);
+      let myProfile = await fetch(`http://localhost:3000/user/${userId}`);
       response = await response.json();
       myProfile = await myProfile.json();
       setLoggedUser(myProfile);
