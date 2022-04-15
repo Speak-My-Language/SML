@@ -62,18 +62,61 @@ body {
   justify-content: center;
 }
 .main-feed-container {
-  // background-image: linear-gradient(to bottom right, white, rgb(208, 177, 228), rgb(190, 146, 212), rgb(212, 120, 215), rgb(222, 128, 189));
-  background: linear-gradient(
-    45deg,
-    rgba(94, 193, 211, 0.904) 0%,
-    rgb(228, 215, 248) 75%
-  );
+  background-image: linear-gradient(to bottom right, white, rgb(208, 177, 228), rgb(190, 146, 212), rgb(212, 120, 215), rgb(204, 105, 169));
 
   position: absolute;
     top: 0;
     right: 0;
     left: 0;
     bottom: 0;
+}
+#matches-title {
+  font-family: 'Press Start 2P', 'Varela Round';
+  font-size: 28px;
+}
+#inner-matches-box {
+  // font-family: 'Press Start 2P', 'Varela Round';
+  font-size: 28px;
+  padding-top: 3px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+
+}
+li {
+  font-size: 25px;
+  padding-top: 40x;
+  margin-top: 10px;
+  margin-left: 10px;
+  inline-size: 575px;
+  overflow: hidden;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  // justify-content: space-between;
+  flex-wrap: wrap;
+  text-align: left;
+  overflow-wrap: anywhere;
+  word-wrap: break-all;
+  hyphens: auto;
+  white-space: normal;
+  
+}
+#matches-container {
+  width:600px;
+  height: auto;
+  background-color: rgb(255, 255, 255);
+  position: relative;
+  display: block;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 50px;
+  top: 0px;
+  bottom:0px;
+  text-align:center;
+  border-radius: 5px;
 }
 .githubButton {
   font-size: 25px;
@@ -108,7 +151,7 @@ body {
 }
 
 .updateProfileBtn {
-  padding: 30px 20px;
+  padding: 30px 20px
 }
 
 .updateProfileInput {
