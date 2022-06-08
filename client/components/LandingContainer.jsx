@@ -21,7 +21,6 @@ const LandingContainer = () => {
       </div>
       <div id="signupContainer" sx={{ minWidth: 275 }}>
         <CardContent>
-          
           <SignupContainer />
         </CardContent>
       </div>
