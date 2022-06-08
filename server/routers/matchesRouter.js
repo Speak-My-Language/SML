@@ -14,12 +14,12 @@ matchesRouter.post('/', matchesController.createMatch, async (req, res) => {
 
 matchesRouter.get(
   '/',
-  // cookieController.getUserSession,
+  cookieController.getUserSession,
   matchesController.getMatches,
   async (req, res) => {
     res.setHeader('Access-Control-Allow-Credentials', true);
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
-    return res.status(200).json(res.locals.userMatches)
+    return res.status(200).json(res.locals.userMatches);
   }
 );
 
